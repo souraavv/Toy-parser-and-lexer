@@ -1,65 +1,46 @@
-# To Run code using make file
+# Toy Parser and lexer
+
+## To Run code using make file
 
 - Use command : make all : to build the lexer.hs file and compile parser.hs along with lexer module 
-
 - Use commnad : make run filename = * : where * is the file name example test.txt
-
 - Use command : make clean : to remove all executable and object files
 
 
-# Language Specification
+## Language Specification
 
-if exp then exp else exp fi 
+1. if exp then exp else exp fi 
+2. let var = exp in exp end 
 
-let var = exp in exp end 
-
-# output format:
+## Output format:
 
 - For lexer output : [Token, AlexPosn, String] -- AlexPosn is required in parser.hs during syntax error
-
 - For parser output: Abstract Syntax Tree.
 
-# operator and Symbol in language
+## Operator and Symbol in language
 
-End of file                     eof
+- End of file                     eof
+- Boolean And                     && 
+- Boolean Or is                   || 
+- Boolean xor is                  xor
+- Boolena not is                  not
+- less than is                    <
+- greater than is                 > 
+- equal/assign is                 =
+- eqauls is                       ==
+- LPAREN is                       (
+- RPAREN is                       )
+- TRUE is                         TRUE
+- FALSE is                        FALSE
+- Negate is                       ~
+- Add is                          +
+- Minus is                        -
+- Times is                        *
+- comment is                      --
 
-Boolean And                     && 
+## Testing on few test cases:
 
-Boolean Or is                   || 
-
-Boolean xor is                  xor
-
-Boolena not is                  not
-
-less than is                    <
-
-greater than is                 > 
-
-equal/assign is                 =
-
-eqauls is                       ==
-
-LPAREN is                       (
-
-RPAREN is                       )
-
-TRUE is                         TRUE
-
-FALSE is                        FALSE
-
-Negate is                       ~
-
-Add is                          +
-
-Minus is                        -
-
-Times is                        *
-
-comment is                      --
-
-# Testing on few test cases:
-
-# failure
+### Failure scenarios
 - if (x || y && z + (2 * k - p)) then (x > z) || (p > z) else if True then x else y fi fi 
 - let x = 4 in y eof 
 - let x = 4 eof 
@@ -70,7 +51,7 @@ comment is                      --
 - if x > y then if y > x then y else x fi else if y + x > 0 then y * x else x - y fi eof 
 - (3 + eof
 
-# success
+### Success scenarios
 - (4 + 3 - 3 + (2 * 4 - (3 * 4))) eof
 - let x = 4 y = 4 z = (y + z) in let t = 4 in t * 4 end end eof 
 - let x = 4 y = (3 || z) in if x > y then x else y fi end eof

@@ -1,0 +1,44 @@
+--------------------------  AuxStart Symbol -----------
+
+AuxStart -> S Z
+Z -> EOF
+ 
+--------------------------- Start Symbol --------------
+
+S -> LetExp | IfExp | B 
+
+----------------------------- ArithExp -----------------
+
+E -> F F'
+F' -> + E | - E | Epsilon
+F -> G G'
+G' -> * F | Epsilon
+G -> ID | Num | ~E | (B) | NOT B
+
+----------------------------  BoolExp  ------------------------
+
+B -> C C'
+C' -> IMPLIES B | Epsilon
+C  -> D D'
+D' -> LESSTHAN C | GREATERTHAN C | Epsilon
+D -> H H'
+H' -> AND D| OR D| XOR D| BOOLEQUALS D | Epsilon
+H -> CONST | E 
+
+---------------------------- LetExp --------------
+
+LetExp -> LET K IN S END
+K -> ID = B K'
+K' -> K | Epsilon
+
+----------------------------- IfExp --------------
+
+IfExp -> If B then S else S fi
+
+-------------------------------- Follow's --------------
+
+follow(H') = LESSTHAN, GREATERTHAN, IMPLIES, ), *, +, -, AND, OR, XOR, BOOLEQUALS, ID, IN, then,EOF,else, fi, end
+follow(C') = follow(H') = follow(G') = follow(F') = follow(D')
+
+
+
